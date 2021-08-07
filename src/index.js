@@ -7,8 +7,6 @@ import firebase from './config/firebase';
 
 console.log('config ==>', firebase);
 
-
-//TODO: INDEX
 ReactDOM.render(
   <React.StrictMode>
     <App />

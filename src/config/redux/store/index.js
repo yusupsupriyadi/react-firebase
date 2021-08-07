@@ -1,5 +1,6 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk';
 import reducer from '../reducer';
 
-//FIXME CONFIG: Store
-export const store = createStore(reducer);
+//FIXME REDUX: Store
+export const store = createStore(reducer, applyMiddleware(thunk))

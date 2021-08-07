@@ -1,33 +1,32 @@
 import React, { Component } from "react";
-import firebase from "../../../config/firebase";
+import { connect } from "react-redux";
+import Button from "../../../components/atoms/Buttton";
+import { registerUserApi } from "../../../config/redux/action";
 
-//TODO: Register
+//TODO PAGE: Register
 class Register extends Component {
+    // state
     state = {
         email: '',
         password: '',
     }
 
+    // handle
     handleChangeText = (e) => {
         this.setState({
             [e.target.id]: e.target.value 
         })
     }
+
     handleRegisterSubmit = () => {
         const { email, password } = this.state;
-        console.log('email =', email, 'password =', password);
-
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(res => {
-                console.log('success', res);
-            })
-            .catch(function(error){
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log(errorCode, errorMessage);
-            });
+        this.props.registerAPI({ email, password })
+        this.setState({
+            email: '',
+            password: ''
+        })
     }
-
+    // html
     render() {
         return (
             <div>
@@ -36,13 +35,13 @@ class Register extends Component {
                     <div>
                         <div className="mb-3">
                             <label htmlFor="exampleFormControlInput1" className="form-label" >Email</label>
-                            <input type="email" className="form-control" id="email" placeholder="name@example.com" onChange={this.handleChangeText}/>
+                            <input type="email" className="form-control" id="email" placeholder="name@example.com" onChange={this.handleChangeText} value={ this.state.email }/>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="exampleFormControlInput1" className="form-label" >Password</label>
-                            <input type="password" className="form-control" id="password" placeholder="password" onChange={this.handleChangeText}/>
+                            <input type="password" className="form-control" id="password" placeholder="6sV#H=6" onChange={this.handleChangeText} value={this.state.password}/>
                         </div>
-                        <button type="button" className="btn btn-primary" onClick={this.handleRegisterSubmit}>Register</button>
+                        <Button onClick={this.handleRegisterSubmit} title="Register" loading={this.props.isLoading} success={ this.props.isSuccess}/>
                     </div>
                 </div>
             </div>
@@ -50,4 +49,14 @@ class Register extends Component {
     }
 }
 
-export default Register;
+// Redux
+const reduxState = (state) => ({
+    isLoading: state.isLoading,
+    isSuccess: state.isSuccess
+})
+
+const reduxDispatch = (dispatch) => ({
+    registerAPI: (data) => dispatch(registerUserApi(data))
+})
+
+export default connect(reduxState, reduxDispatch) (Register);

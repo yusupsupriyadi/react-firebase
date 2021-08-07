@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 
+//TODO PAGE: Dashboard
 class Dashboard extends Component {
     render() {
         return (
             <div>
-                <h1>Login</h1>
+                <h1>dashboard</h1>
             </div>
         )
     }

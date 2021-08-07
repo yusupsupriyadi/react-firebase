@@ -1,7 +1,9 @@
-//FIXME CONFIG: Reducer
+//FIXME REDUX: Reducer
 const initialState = {
     popup: false,
-    isLogin: false
+    isLogin: false,
+    isLoading: false,
+    isSuccess: false,
 
 }
 
@@ -12,10 +14,16 @@ const reducer = (state = initialState, action) => {
             popup: action.value
         }
     }
-    if (action.type === 'CHANGE_ISLOGIN') {
+    if (action.type === 'CHANGE_USER') {
         return {
             ...state,
-            isLogin: action.value
+            user: action.value
+        }
+    }
+    if (action.type === 'CHANGE_LOADING') {
+        return {
+            ...state,
+            isLoading: action.value
         }
     }
     return state;

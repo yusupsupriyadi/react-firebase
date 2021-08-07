@@ -6,7 +6,7 @@ import Dashboard from '../Dashboard';
 import { Provider } from 'react-redux';
 import { store } from '../../../config/redux';
 
-//TODO: APP
+//TODO PAGE: APP
 function App() {
   return (
     <Provider store={store}>
