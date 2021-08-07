@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 import 'firebase/auth';
 import 'firebase/firestore';
 
+//FIXME CONFIG: Firebase
 var firebaseConfig = {
     apiKey: "AIzaSyAAr-cWSCn757xiLxxEA0xN75_KpXraNls",
     authDomain: "react-firebase-a20e4.firebaseapp.com",
